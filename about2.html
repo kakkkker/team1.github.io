@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            overflow-y: auto; 
+        }
+        
+       
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 28pt;
+            color: black;
+            text-align: center;
+        }
+        .logo::after {
+            content: "";
+            display: block;
+            width: 90%;
+            height: 1.5px;
+            background-color: black;
+            margin-top: 6px; 
+        }
+
+        /* 검색 바 설정 */
+        .search-bar {
+            display: flex;
+            padding: 10px 10px;
+            align-items: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 5px;
+            font-size: 14pt;
+            border: none;
+            outline: none;
+            text-align: center; 
+        }
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .search-bar::after {
+            content: "";
+            display: block;
+            width: 1.5px;
+            height: 24px; 
+            background-color: black;
+            margin: 0 10px; 
+        }
+
+       
+        .category-panel {
+            display: none; /* 처음에는 숨김 */
+            position: absolute;
+            top: 60px; /* 헤더 아래로 위치 */
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(80, 80, 80, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            font-size: 10pt;
+            color: rgb(78, 78, 78);
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .category-panel ul {
+            list-style: none;
+            padding: 0; /* 기본 패딩 제거 */
+            margin: 0; /* 기본 마진 제거 */
+        }
+
+        .category-panel li {
+            margin: 15px 0;
+            cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+        }
+
+        .category-panel a {
+            text-decoration: none;
+            color: rgb(78, 78, 78);
+        }
+
+        /* 검색 바 이미지 크기 및 간격 조절 */
+        .search-bar button img {
+            width: 19px; /* 5% 크기 줄임 */
+            height: 19px; /* 5% 크기 줄임 */
+            margin-right: 5px; /* 간격을 5px 넓힘 */
+        }
+
+        /* 메뉴 버튼 이미지 크기 및 간격 조절 */
+        .menu-button img {
+            width: 19px; /* 5% 크기 줄임 */
+            height: 19px; /* 5% 크기 줄임 */
+            margin-left: 5px; /* 간격을 5px 넓힘 */
+        }
+
+        /* 메뉴 버튼 */
+        .menu-button {
+            cursor: pointer;
+            padding: 5px;
+            height: 50%;
+        }
+        /* 헤더 오른쪽 정렬 */
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        /* 기본 리스트 스타일 제거 */
+        .main-content li {
+            list-style: none;
+            margin-left: 0; /* 기본 왼쪽 여백 제거 */
+        }
+
+        .color-button {
+            border: 0.5pt solid black; 
+            cursor: pointer;
+            outline: none;
+            font-family: sans-serif;
+            font-size: 48pt;
+            color: white;
+            text-align: center;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: absolute;
+            text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000; 
+        }
+
+        .image-container {
+            position: absolute;
+            border: 0.5pt solid black;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .color-button {
+                font-size: 24pt;
+                padding: 5px 10px;
+            }
+            #Oyster, #Tuna, #Salmon, #Squid {
+                width: auto;
+                height: auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                position: relative;
+                margin: 10px;
+            }
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        #Salmon\ Poke img {
+            object-fit: contain; /* 원본 비율로 보여주기 위해 변경 */
+        }
+
+        .team-names {
+            font-size: 42pt;
+            font-family: 'Pretendard', sans-serif;
+            color: black;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            display: flex;
+            gap: 20px; /* 이미지 사이의 간격 조정 */
+            padding-bottom: 200px;
+        }
+        .container div {
+            position: relative;
+            width: 250px;
+            height: 450px;
+        }
+        .container img {
+            position: absolute;
+            top: 100px; /* 이미지의 세로 위치 조정 */
+            left: 100px; /* 이미지의 가로 위치 조정 */
+            width: 250px;
+            height: 450px;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <div class="header">
+        <!-- 로고 -->
+        <div class="logo">Recipeee.</div>
+        <!-- 헤더 오른쪽 정렬 -->
+        <div class="header-right">
+            <!-- 검색 바 -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <button>
+                    <img src="https://i.imgur.com/QTuDQtr.png" alt="Search">
+                </button>
+            </div>
+            
+            <div class="menu-button" onclick="toggleCategoryPanel()">
+                <img src="https://i.imgur.com/Z36CNwL.png" alt="Menu">
+            </div>
+        </div>
+    </div>
+   
+    <div class="category-panel" id="categoryPanel">
+        <h2>About</h2>
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <!-- 기타 About 항목들을 이어서 추가하십시오 -->
+        </ul>
+        <h2>More+</h2>
+        <ul>
+            <li><a href="hajin.html">Hajin Kim</a></li>
+            <li><a href="jisu1.html">Jisu Lee</a></li>
+            <li><a href="eun.html">Seeun Yoon</a></li>
+            <li><a href="muyoung.html">Muyoung Jin</a></li>
+            <li><a href="min.html">Seungmin Jeong</a></li>
+        </ul>
+    </div>
+
+    <div class="team-names">
+        Team<br>
+        Hajin Kim<br>
+        Jisu Lee<br>
+        Muyoung Jin<br>
+        Seeun Yoon<br>
+        Seungmin Jeong
+    </div>
+
+    <div class="container">
+        <div id="a1">
+            <img src="images/about-01.png" width="250px" height="450px">
+        </div>
+    
+        <div id="a2">
+            <img src="images/about-02.png" width="250px" height="450px">
+        </div>
+    
+        <div id="a3">
+            <img src="images/about-03.png" width="250px" height="450px">
+        </div>
+    
+        <div id="a4">
+            <img src="images/about-04.png" width="250px" height="450px">
+        </div>
+
+        <div id="a5">
+            <img src="images/about-05.png" width="250px" height="450px">
+        </div>
+        </div>
+
+    <script>
+        function toggleCategoryPanel() {
+            var panel = document.getElementById('categoryPanel');
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

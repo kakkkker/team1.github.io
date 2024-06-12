@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Layout</title>
+    <style>
+        body {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            font-family: Arial, sans-serif;
+        }
+        .column {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .image-caption {
+            margin-top: 5px;
+            font-size: 16px;
+        }
+        .header {
+            background-color: #ffc0cb;
+            padding: 10px;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .text-box {
+            background-color: #d3d3d3;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .text-box ol {
+            padding-left: 20px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-around;
+        }
+    </style>
+</head>
+<body>
+    <div class="column">
+        <div class="header">연어스테이크 굽기!!!</div>
+        <div class="text-box">
+            <ol>
+                <li>연어를 손질합시다. 연어는 가시를 발라내고 비늘은 긁은 후 세척하여 물기를 제거합니다.</li>
+                <li>소스를 만듭니다. 팬에 버터 1큰술을 녹인 후 약한 불에서 밀가루 1큰 술을 넣고 3분간 볶습니다. 닭 육수 반 컵을 부어 레몬즙 2큰술, 생크림 반컵을 넣고 저어줍니다. 후에 머스타드 1큰술, 꿀 작은술을 넣은 후 소금과 후추를 넣어가며 간을 조절합니다.</li>
+                <li>본격적으로 연어를 굽습니다. 중간 불로 달군 팬에 올리브오일을 두르고 연어의 껍질쪽을 3분간 굽습니다. 화이트 와인이나 맛술을 2큰 술을 부어 비린내를 제거합시다. 뒤집어 중간불에서 노릇하게 골고루 구워줍니다. 구운 연어를 유산지로 감싸서 레스팅을 3분간 진행합니다.</li>
+                <li>맛있게 소스에 찍어드세요!</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column">
+            <div class="image-container">
+                <img src="https://i.imgur.com/PHNeBWp.png" alt="완성">
+                <div class="image-caption">완성</div>
+            </div>
+            <div class="image-container">
+                <img src="https://i.imgur.com/AumxoFB.png" alt="연어 손질하기">
+                <div class="image-caption">연어 손질하기</div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="image-container">
+                <img src="https://i.imgur.com/2xkB7wv.png" alt="연어 굽기">
+                <div class="image-caption">연어 굽기</div>
+            </div>
+            <div class="image-container">
+                <img src="https://i.imgur.com/cFer0L7.png" alt="연어 레스팅">
+                <div class="image-caption">연어 레스팅</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

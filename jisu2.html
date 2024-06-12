@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="레시피소개">
+    <title>photo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #ffcc00;
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            cursor: pointer; 
+        }
+
+        #popup-container {
+            display: none; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.5); 
+            z-index: 999; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #popup-container img {
+            max-width: 80%;
+            max-height: 80%;
+        } 
+
+        .container1 {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            width: 300px;
+            height: 50px; 
+            background-color: #ffffff;
+            border: 1px solid #000000; 
+            position: absolute; 
+            top: 250px; 
+            left: 400px; 
+            transform: translate(-50%, -50%); 
+            margin: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+        }
+
+    
+
+        .container2 {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            width: 300px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid black;
+            top: 425px;
+            left: 400px;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+ 
+    
+
+        .container3 {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            width: 300px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid black;
+            top: 600px;
+            left: 400px;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        
+    
+    
+        .container4 {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: bold;
+            position: absolute;
+            width: 300px;
+            height: 50px;
+            background-color: white;
+            border: 1px solid black;
+            top: 1800px;
+            left: 1150px;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+        }
+
+     
+        
+
+    
+
+
+    </style>
+</head>
+
+<body>
+    <div id="pic1">
+        <a href=""><img src="https://i.imgur.com/yVKyIUr.png" alt="옥수수콘" width="200px" height="200px"></a>
+    </div>
+    <div id="pic2">
+        <img src="https://i.imgur.com/7nHcQfq.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic3">
+        <img src="https://i.imgur.com/mB6ZzyC.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic4">
+        <img src="https://i.imgur.com/p29FgjL.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic5">
+        <img src="https://i.imgur.com/qg9Jnp4.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic7">
+        <img src="https://i.imgur.com/lq20JKu.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic7">
+        <img src="https://i.imgur.com/VRmWD39.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic8">
+        <img src="https://i.imgur.com/dBTRJ39.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic9">
+        <img src="https://i.imgur.com/MQvgbW5.png" alt="" width="200px" height="200px">
+    </div>
+    <div id="pic10">
+        <img src="https://i.imgur.com/YRW94ub.png" alt="" width="200px" height="200px">
+    </div>
+
+  
+    <div id="popup-container">
+  
+    <img src="" alt="">
+    </div>
+
+    
+    <div class="container1"> 
+        <p>이제 스크롤을 끝까지 내려보세요</p>
+    </div>
+
+    <div class="container2"> 
+        <p>
+            사진을 누르면 자세히 볼 수 있어요
+        </p>
+    </div>
+
+    <div class="container3"> 
+        <p>
+            이제 스크롤을 끝까지 내려보세요
+        </p>
+    </div>
+
+    <div class="container4">
+        <a href="jisu3.html">
+        <p>
+            클릭하면 레시피를 볼 수 있어요
+        </p>
+        </a>
+    </div>
+
+    <script>
+        
+        function closePopup() {
+            var popup = document.getElementById("popup-container");
+            popup.style.display = "none"; 
+        }
+
+      
+        function showPopup() {
+            var popup = document.getElementById("popup-container");
+            var clickedImage = event.target.src;
+            var popupImage = popup.querySelector("img"); 
+            popupImage.src = clickedImage; 
+            popup.style.display = "flex"; 
+        }
+
+        
+        document.querySelectorAll("#pic1 img, #pic2 img, #pic3 img, #pic4 img, #pic5 img, #pic6 img, #pic7 img, #pic8 img, #pic9 img, #pic10 img").forEach(function(image) {
+            image.addEventListener("click", showPopup);
+        });
+
+        
+        document.getElementById("popup-container").addEventListener("click", closePopup);
+    </script>
+</body>
+</html>

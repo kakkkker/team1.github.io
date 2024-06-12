@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1조_기말</title>
+    <style>
+       
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            overflow: hidden;
+        }
+        
+       
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 28pt;
+            color: black;
+            text-align: center;
+        }
+        .logo::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1.5px;
+            background-color: black;
+            margin-top: 6px;
+        }
+
+      
+        .search-bar {
+            display: flex;
+            padding: 10px 10px;
+            align-items: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 5px;
+            font-size: 14pt;
+            border: none;
+            outline: none;
+        }
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .search-bar button img {
+            width: 19px;
+            height: 19px;
+            margin-right: 5px;
+        }
+        .search-bar::after {
+            content: "";
+            display: block;
+            width: 1.5px;
+            height: 24px;
+            background-color: black;
+            margin: 0 10px;
+        }
+
+      
+        .category-panel {
+            display: none;
+            position: absolute;
+            top: 80px;
+            right: 30px;
+            padding: 10px;
+            z-index: 1000;
+            font-size: 10pt;
+            color: rgb(101, 101, 101);
+            text-align: left;
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .category-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-panel li {
+            margin: 15px 0;
+        }
+
+        
+        .menu-button img {
+            width: 19px;
+            height: 19px;
+            margin-left: 5px;
+        }
+
+        
+        .menu-button {
+            cursor: pointer;
+            padding: 5px;
+            height: 50%;
+        }
+       
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .color-button {
+            border: 0.5pt solid black; 
+            cursor: pointer;
+            outline: none;
+            font-family: sans-serif;
+            font-size: 48pt;
+            color: white;
+            text-align: center;
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            position: absolute;
+            text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000; 
+        }
+
+        .image-container {
+            position: absolute;
+            border: 0.5pt solid black;
+            border-radius: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .color-button {
+                font-size: 24pt;
+                padding: 5px 10px;
+            }
+            .image-container {
+                width: auto;
+                height: auto;
+                top: auto;
+                left: auto;
+                right: auto;
+                position: relative;
+                margin: 10px;
+            }
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+
+        #Salmon\ Poke img {
+            object-fit: contain;
+        }
+
+        .main-content li {
+    list-style: none;
+    margin-left: 0; 
+}
+
+
+.main-content li {
+    margin-bottom: 10px; 
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+       
+        .cooking-steps {
+            width: 66%; 
+            text-align: center; 
+        }
+
+        .cooking-steps h4 {
+            margin: 10px 0; 
+        }
+
+        .image-container {
+            position: absolute;
+            border: 0.5pt solid black;
+            border-radius: 5px;
+        }
+
+      
+        .category-panel {
+            display: none; 
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(80, 80, 80, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            font-size: 10pt;
+            color: rgb(78, 78, 78);
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .category-panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0; 
+        }
+
+        .category-panel li {
+            margin: 15px 0;
+            cursor: pointer;
+        }
+
+        .category-panel a {
+            text-decoration: none;
+            color: rgb(78, 78, 78);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+    
+        <div class="logo">Recipeee.</div>
+      
+        <div class="header-right">
+      
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <button>
+                    <img src="https://i.imgur.com/wN0z0EC.png" alt="Search">
+                </button>
+            </div>
+           
+            <div class="menu-button" onclick="toggleCategoryPanel()">
+                <img src="https://i.imgur.com/OGNR0dz.png" alt="Menu">
+            </div>
+        </div>
+    </div>
+
+    <div class="category-panel" id="categoryPanel">
+        <h2>About</h2>
+        <ul>
+            <li><a href="about2.html">About Us</a></li>
+       
+        </ul>
+        <h2>More+</h2>
+        <ul>
+            <li><a href="hajin.html">Hajin Kim</a></li>
+            <li><a href="jisu1.html">Jisu Lee</a></li>
+            <li><a href="eun.html">Seeun Yoon</a></li>
+            <li><a href="muyoung.html">Muyoung Jin</a></li>
+            <li><a href="min.html">Seungmin Jeong</a></li>
+        </ul>
+    </div>
+
+
+    <a href="min.html">
+        <div id="Salmon Steak" class="image-container" style="width: 125mm; height: 44mm; top: 180px; left: 120px; z-index: 1;">
+            <img src="https://i.imgur.com/6nWoKAO.jpeg" alt="Salmon Steak">
+        </div>
+    </a>
+    <a href="jisu1.html">
+        <div id="Pizza Bread" class="image-container" style="width: 80mm; height: 40mm; top: 530px; left: 120px; z-index: 1;">
+            <img src="https://i.imgur.com/0qDUECn.jpeg" alt="Pizza Bread">
+        </div>
+    </a>
+    <a href="eun.html">
+        <div id="Tteokbokki" class="image-container" style="width: 125mm; height: 32mm; top: 180px; right: 250px; z-index: 1;">
+            <img src="https://i.imgur.com/BAbkkHx.jpeg" alt="Tteokbokki">
+        </div>
+    </a>
+    <a href="muyoung.html">
+        <div id="Tomato Spaghetti" class="image-container" style="width: 122mm; height: 47mm; top: 380px; left: 410px; z-index: 2;">
+            <img src="https://i.imgur.com/ClJ0KPJ.jpeg" alt="Tomato Spaghetti">
+        </div>
+    </a>
+    <a href="hajin.html">
+        <div id="Salmon Poke" class="image-container" style="top: 530px; right: 320px; width: 100mm; height: 58mm; background-color: transparent; border: none; z-index: 1;">
+            <img src="https://i.imgur.com/TRRmf4Y.jpeg" alt="Salmon Poke">
+        </div>
+    </a>
+
+    <script>
+        function toggleCategoryPanel() {
+            var panel = document.getElementById('categoryPanel');
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'block';
+            }
+        }
+    </script>
+
+<script>
+	
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+</script>
+</body>
+</html>

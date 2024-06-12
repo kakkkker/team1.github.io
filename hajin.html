@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipeee Main Page</title>
+    <style>
+        /* CSS 애니메이션 키프레임 정의 */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        /* 전체 페이지 설정 */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            overflow: hidden;
+        }
+        
+        /* 페이지 헤더 설정 */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .logo {
+            font-size: 28pt;
+            color: black;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .logo::after {
+            content: "";
+            display: block;
+            width: 990%;
+            height: 1.5px;
+            background-color: black;
+            margin-top: 6px; /* 원하는 여백 조정 */
+        }
+
+        /* 검색 바 설정 */
+        .search-bar {
+            display: flex;
+            padding: 10px 10px;
+            align-items: center;
+        }
+        .search-bar input[type="text"] {
+            padding: 5px;
+            font-size: 14pt;
+            border: none;
+            outline: none;
+        }
+        .search-bar button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .search-bar button img {
+            width: 24px;
+            height: 24px;
+        }
+        .search-bar::after {
+            content: "";
+            display: block;
+            width: 1.5px;
+            height: 24px; /* 아이콘과 맞추기 위해 높이를 조정할 수 있습니다. */
+            background-color: black;
+            margin: 0 10px; /* 아이콘과의 간격을 조정할 수 있습니다. */
+        }
+
+        /* 메인 컨텐츠 설정 */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: flex-start; /* 가운데 정렬 */
+            align-items: center; /* 가운데 정렬 */
+            position: relative;
+            margin: 0 30px;
+            padding: 0 30px;
+            overflow: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+        
+        /* 상단 이미지 설정 */
+        .top, .bottom {
+            width: 50%;
+            display: flex;
+            justify-content: center; /* 이미지를 수평으로 가운데 정렬 */
+            align-items: center; /* 이미지를 수직으로 가운데 정렬 */
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .top img, .bottom img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 80px;
+        }
+
+        /* 이미지와 텍스트를 감싸는 컨테이너 설정 */
+        .image-container {
+            position: relative; /* 포지션을 상대적으로 설정하여 내부 요소를 위치시킬 수 있도록 함 */
+        }
+
+        /* 텍스트 설정 */
+        .image-text {
+            position: absolute;
+            top: -300px;
+            right: -130px;
+            transform: translate(0, -50%);
+            font-size: 72px;
+            color: black;
+            white-space: nowrap;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        /* 하단 이미지 설정 */
+        .bottom {
+            max-width: 50%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px 90px; /* 이미지 간격 설정 */
+            padding: 20px;
+            justify-content: center; /* 이미지를 수평으로 가운데 정렬 */
+            align-items: center; /* 이미지를 수직으로 가운데 정렬 */
+        }
+        /* 하단 이미지 설정 */
+.bottom img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    opacity: 0; /* 처음에는 투명도를 0으로 설정하여 나타나도록 함 */
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out; /* 상태 변화 애니메이션 */
+}
+/* 애니메이션 트리거 클래스 */
+.bottom img.animate {
+    opacity: 1; /* 나타나게 함 */
+    transform: translateY(0); /* 원래 위치로 */
+}
+
+        /* 각 이미지에 slideUp 애니메이션 적용 */
+        .bottom img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            opacity: 0; /* 처음에는 투명도를 0으로 설정하여 나타나도록 함 */
+            transition: transform 0.5.s, opacity 0.5s ease-in-out; /* 상태 변화 애니메이션 */
+        }
+        /* 애니메이션 트리거 클래스 */
+        .bottom img.animate {
+            opacity: 1; /* 나타나게 함 */
+            transform: translateY(0); /* 원래 위치로 */
+        }
+
+        /* 애니메이션 설정 */
+        .info {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            right: 8px;
+            bottom: 8px;
+            background-color: rgba(255, 255, 255, 1.0);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow
+            : 0 0 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 0.8s ease-in-out, slideIn 0.8s ease-in-out;
+            overflow-y: auto;
+        }
+        
+        /* 테이블 설정 */
+        table {
+            width: 66%;
+            margin-top: 10px;
+            border-collapse: collapse;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center; /* 텍스트를 가운데 정렬 */
+        }
+        
+        /* 카테고리 패널 */
+        .category-panel {
+            display: none; /* 처음에는 숨김 */
+            position: absolute;
+            top: 80px;
+            right: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(80, 80, 80, 0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+            font-size: 10pt;
+            color: rgb(78, 78, 78);
+            text-align: left;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .category-panel ul {
+            list-style: none;
+            padding: 0; /* 기본 패딩 제거 */
+            margin: 0; /* 기본 마진 제거 */
+        }
+
+        .category-panel li {
+            margin: 15px 0;
+            cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+        }
+
+        .category-panel a {
+            text-decoration: none;
+            color: rgb(78, 78, 78);
+        }
+
+        /* 검색 바 이미지 크기 및 간격 조절 */
+        .search-bar button img {
+            width: 19px; /* 5% 크기 줄임 */
+            height: 19px; /* 5% 크기 줄임 */
+            margin-right: 5px; /* 간격을 5px 넓힘 */
+        }
+
+        /* 메뉴 버튼 이미지 크기 및 간격 조절 */
+        .menu-button img {
+            width: 19px; /* 5% 크기 줄임 */
+            height: 19px; /* 5% 크기 줄임 */
+            margin-left: 5px; /* 간격을 5px 넓힘 */
+        }
+
+        /* 메뉴 버튼 */
+        .menu-button {
+            cursor: pointer;
+            padding: 5px;
+            height: 50%;
+        }
+        /* 헤더 오른쪽 정렬 */
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+        /* 기본 리스트 스타일 제거 */
+.main-content li {
+    list-style: none;
+    margin-left: 0; /* 기본 왼쪽 여백 제거 */
+}
+
+/* 각각의 리스트 아이템 스타일 조정 */
+.main-content li {
+    margin-bottom: 10px; /* 각 항목 사이 간격 조정 */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+        /* 조리 순서 가운데 정렬 */
+        .cooking-steps {
+            width: 66%; /* 원하는 너비로 설정 */
+            text-align: center; /* 가운데 정렬 */
+        }
+
+        .cooking-steps h4 {
+            margin: 10px 0; /* 항목 사이 간격 조정 */
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- 헤더 섹션 -->
+    <div class="header">
+        <!-- 로고 -->
+        <div class="logo">Recipeee.</div>
+        <!-- 헤더 오른쪽 정렬 -->
+        <div class="header-right">
+            <!-- 검색 바 -->
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+                <button>
+                    <img src="돋보기.png" alt="Search">
+                </button>
+            </div>
+            <!-- 메뉴 버튼 -->
+            <div class="menu-button">
+                <img src="카테고리.png" alt="Menu">
+            </div>
+        </div>
+    </div>
+    <!-- 카테고리 패널 -->
+    <div class="category-panel" id="categoryPanel">
+        <h2>About</h2>
+        <ul>
+            <li><a href="about.html">About Us</a></li>
+            <!-- 기타 About 항목들을 이어서 추가하십시오 -->
+        </ul>
+        <h2>More+</h2>
+        <ul>
+            <li><a href="연어포케.html">Hajin Kim</a></li>
+            <li><a href="index.html">Jisu Lee</a></li>
+            <li><a href="세은.html">Seeun Yoon</a></li>
+            <li><a href="무영.html">Muyoung Jin</a></li>
+            <li><a href="정승민.html">Seungmin Jeong</a></li>
+        </ul>
+    </div>
+
+    <!-- 메인 컨텐츠 섹션 -->
+    <div class="main-content">
+        <!-- 상단 이미지 -->
+        <div class="top">
+            <a href="#">
+                <img id="mainImage" src="https://i.imgur.com/3ksHDQ9.png" alt="연어포케">
+            </a>
+            <!-- 이미지와 텍스트를 감싸는 컨테이너 -->
+            <div class="image-container">
+                <!-- 텍스트 -->
+                <div class="image-text" style="text-align: center;">Fresh, Healthy, Organic, Delicious!</div>
+            </div>
+        </div>
+        <li>포케는 자른다는 하와이 말로 날생선을 샐러드와 같이 곁들여먹는 회무침 연어 요리이다.</li>
+        <li>깍둑썰기 한 참치나 연어에 아보카도, 양상추 등과 곁들여 밥 위에 올려먹는 회덮밥이라고 생각하면 되는데,</li>
+        <li>초장에 비벼 먹는 흔히 알고 있는 맛과는 달리 간장이나 마요네즈 소스와 아삭한 채소가 같이 어우러지는 맛이</li>
+        <li>매력있는 메뉴이다.</li>
+        <h3>재료</h3>
+        <table>
+            <tr><td>연어 200g</td></tr>
+            <tr><td>아보카도 1/2</td></tr>
+            <tr><td>오이 1/2</td></tr>
+            <tr><td>양파 1/2</td></tr>
+            <tr><td>양상추</td></tr>
+            <tr><td>어린잎 믹스 2줌</td></tr>
+            <tr><td>레몬 한조각</td></tr>
+        </table>
+        <div class="cooking-steps">
+            <h3>조리 순서</h3>
+            <ul>
+                <li>
+                    <h4>1. 샐러드 채소를 준비한다.</h4>
+                    <p>양파를 얇게 슬라이스해준다.</p>
+                    <p>오이는 굵은소금으로 씻은 뒤 4등분으로 썰어준다.</p>
+                </li>
+                <li>
+                    <h4>2. 양상추와 어린잎 채소를 세척한 뒤 물기를 털어준다.</h4>
+                    <p>믹스로 된 걸로 준비하면 보다 간편하다.</p>
+                </li>
+                <li>
+                    <h4>3. 아보카도를 준비한다.</h4>
+                    <p>아보카도를 검은빛으로 먹기 좋게 후숙된 걸 반으로 잘라 껍질을 벗겨준다.</p>
+                    <p>아보카도도 한 입에 먹기 좋게 네모나게 썰어준다.</p>
+                </li>
+                <li>
+                    <h4>4. 연어를 준비한다.</h4>
+                    <p>연어를 깍둑썰기로 썰어준다.</p>
+                    <p>* 포케 소스는 간장 2T, 쯔유 1T, 설탕 1T, 레몬즙 1T, 다진 마늘 1t, 참기름 2T, 후추 약간.</p>
+                    <p>와사비 마요네즈 소스는 마요네즈+스리라차 또는 마요네즈+간장+와사비 조합으로 준비해준다. 연어에 밑간해주면 감칠맛이 더 좋다.</p>
+                </li>
+                <li>
+                    <h4>5. 소스를 넣고 버무려준다.</h4>
+                    <p>* 덮밥을 만들 때 다시마 한 조각을 넣고 밥을 지으면 전체적으로 감칠맛이 더 좋다.</p>
+                </li>
+                <li>
+                    <h4>6. 그릇에 한 김 식힌 밥을 담고 가장자리로 샐러드 채소를 올려준다.</h4>
+                    <p>* 포케에 곁들이는 재료는 기호에 따라 옥수수 콘, 날치알 등을 올려주면 된다.</p>
+                </li>
+                <li>
+                    <h4>7. 밑간해둔 연어를 올려준다.</h4>
+                </li>
+                <li>
+                    <h4>8. 상큼하게 어울리는 레몬 한 조각을 올려주면 연어포케 완성.</h4>
+                </li>
+            </ul>
+        </div>
+        <!-- 하단 이미지 -->
+        <div class="bottom">
+            <div class="image-container">
+                <img src="https://i.imgur.com/ti5SRkg.png" alt="연어">
+                <p>Salmon</p>
+            </div>
+            <div class="image-container">
+                <img src="https://i.imgur.com/9YuHV55.png" alt="샐러드">
+                <p>Salad</p>
+            </div>
+            <div class="image-container">
+                <img src="https://i.imgur.com/wrozJdq.png" alt="아보카도">
+                <p>Abocado</p>
+            </div>
+            <div class="image-container">
+                <img src="https://i.imgur.com/3yfAr3n.png" alt="밥">
+                <p>Rice</p>
+        </div>
+        
+    </div>
+    <script>
+        document.querySelector('.menu-button').addEventListener('click', function() {
+            var categoryPanel = document.querySelector('.category-panel');
+            if (categoryPanel.style.display === 'block') {
+                categoryPanel.style.display = 'none';
+            } else {
+                categoryPanel.style.display = 'block';
+            }
+        });
+
+        // Intersection Observer를 사용하여 이미지를 화면에 나타날 때 애니메이션 효과 적용
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target); // 애니메이션이 한 번만 적용되도록 설정
+                }
+            });
+        });
+
+        // 하단 이미지에 대해 observer를 설정
+        document.querySelectorAll('.bottom img').forEach(img => {
+            observer.observe(img);
+        });
+        // 스크롤 이벤트를 통해 이미지 애니메이션 적용
+window.addEventListener('scroll', function() {
+    var images = document.querySelectorAll('.bottom img');
+    var triggerBottom = window.innerHeight / 5 * 4;
+    
+    images.forEach(function(img) {
+        var imgTop = img.getBoundingClientRect().top;
+
+        if(imgTop < triggerBottom) {
+            img.classList.add('animate');
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

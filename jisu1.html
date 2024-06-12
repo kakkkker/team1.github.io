@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .relative-image{
+    position: relative;
+            left: 568px; 
+            top: 185px
+        
+}
+
+.relative-image {
+    position: relative;
+    transition: transform 0.5s ease;
+}
+
+#text1{
+    position: absolute;
+        left: 630px;
+        top: 40px;
+}
+
+.relative-image:hover {
+    animation: moveSides 0.5s infinite alternate;
+}
+
+@keyframes moveSides {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(-10px);
+    }
+}
+    </style>
+</head>
+
+
+<body>
+    <a href="jisu2.html">
+        <img src="https://i.imgur.com/sOdKpFr.png" width="305px" height="605px" class="relative-image">
+    </a>
+    <div id="text1">
+        <img src="https://i.imgur.com/SN2mTad.png" width="260px" height="141px" class="moving-images">
+    </div>
+</body>
+</html>
